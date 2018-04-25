@@ -1,27 +1,22 @@
 {
-  "name": "blinkid-react-native",
-  "version": "1.4.0",
-  "description": "A small and powerful ID card scanning library. Powered by MicroBlink (www.microblink.com).",
+  "name": "react-native-threatmetrix",
+  "version": "0.1.0",
+  "description": "A TMX wrapper",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BlinkID/blinkid-react-native.git"
+    "url": "git+https://github.com/xxxx/xxxx-react-native.git"
   },
   "keywords": [
-    "microblink",
     "react-native",
-    "blinkid",
-    "ID",
-    "scanner",
-    "OCR",
     "ios",
     "android"
   ],
-  "author": "MicroBlink",
+  "author": "",
   "license": "MIT",
-  "homepage": "https://github.com/BlinkID/blinkid-react-native",
+  "homepage": "https://github.com/react-native",
   "bugs": {
-    "url": "https://github.com/BlinkID/blinkid-react-native/issues"
+    "url": "https://github.com/react-native/issues"
   },
   "rnpm": {
     "android": {

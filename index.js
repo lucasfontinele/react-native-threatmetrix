@@ -1,23 +1,9 @@
 'use strict';
-/**
- * This exposes the appropriate native BlinkID module module as a JS module, based on 
- * detected platvorm: Android or iOS. This has a
- * function 'scan' which takes the following parameters:
- *
- * 1. String licenseKey: BlinkID license key bount to application ID for Android or iOS. To obtain
- *                       valid license key, please visit http://microblink.com/login or
- *                       contact us at http://help.microblink.com
- * 2. Object scanningOptions: key-value pairs which contains scanning options map with following key-value pairs:
- *                            useFrontCamera -> boolean
- *                            shouldReturnCroppedImage -> boolean
- *                            shouldReturnSuccessfulImage -> boolean
- *                            recognizers -> array of enabled recognizers
- * 3. Promise promise: promise for returning scan results
- */
+
 import { Platform, NativeModules } from 'react-native';
 
-export const BlinkID = Platform.select({
-      ios: NativeModules.BlinkIDReactNative,
+export const RNThreatMetrix = Platform.select({
+      ios: NativeModules.TMXReactNative,
       android: NativeModules.BlinkIDAndroid
 })
 
