@@ -1,6 +1,6 @@
 {
   "name": "react-native-threatmetrix",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A TMX wrapper",
   "main": "index.js",
   "repository": {
