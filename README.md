@@ -36,8 +36,30 @@
 
 ## Usage
 ```javascript
-import RNThreatMetrix from 'react-native-threatmetrix';
+import { RNThreatMetrix } from 'react-native-threatmetrix';
 
-// TODO: What to do with the module?
-RNThreatMetrix;
+  public  initTMX = () => {
+	let sessionId = ''
+	const orgid = 'org-ID'
+	const fingerPrintServer = 'fingerPrintServer'
+    async function runMe() {
+      try {
+        const result  = await RNThreatMetrix.tmx(orgid, fingerPrintServer)
+        sessionId = result.sessionId
+      } catch (e) {
+        console.log('session Error ' + e)
+      }
+    }
+    runMe().then((value: any) => {
+      const baseUrl = 'your-backend-service'
+      const micoServiceUrl = `${baseUrl}threatmetrix-profile-service/${sessionId}`
+      axios.get(micoServiceUrl)
+        .then( (response) => {
+          Alert.alert(`Session Id Success ${sessionId}`)
+        })
+        .catch( (error) => {
+          console.log(error)
+        })
+    })
+  }
 ```
