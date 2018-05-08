@@ -7,10 +7,13 @@
 //
 
 #import "TMXProfileController.h"
+#import "TMXReactNative.h"
 
 @interface TMXProfileController()
 @property(readwrite, nonatomic) NSString* sessionID;
 @property(readwrite, nonatomic) NSString* requestID;
+@property(readwrite, nonatomic) NSString* optionOrgId;
+@property(readwrite, nonatomic) NSString* optionFingerPrintServer;
 @end
 
 @implementation TMXProfileController
@@ -22,7 +25,14 @@
     _sessionID = nil;
     _timeout   = @10;
     _profile   = [THMTrustDefender sharedInstance];
+    return self;
+}
+
+
+-(void)initialiseTMX:(NSDictionary*)options {
     
+    self.optionOrgId = [options valueForKey:kOptionOrgIDJsKey];
+    self.optionFingerPrintServer = [options valueForKey:kOptionFingerprintServerJsKey];
     static dispatch_once_t configureOnce = 0;
     
     //The [_profile configure] method is effective only once and subsequent calls to it will be ignored. By having a dipatch_once here we make sure configure is called
@@ -33,9 +43,9 @@
                       // Please note that configure may throw NSException if NSDictionay key/value(s) are invalid.
                       // This only happen due to programming error, therefore we don't catch the exception to make sure there is no error in our configuration dictionary
                       [_profile configure:@{
-                                            THMOrgID : ORG_ID,
+                                            THMOrgID :  self.optionOrgId,
                                             // (REQUIRED) Enhanced fingerprint server
-                                            THMFingerprintServer : FP_SERVER,
+                                            THMFingerprintServer : self.optionFingerPrintServer,
                                             // (OPTIONAL) Set the connection timeout, in seconds
                                             THMTimeout : _timeout,
                                             // (OPTIONAL) If Keychain Access sharing groups are used, specify like this
@@ -49,7 +59,7 @@
                                             THMRegisterForPush: @YES
                                             }];
                   });
-    return self;
+//    return self;
 }
 
 -(void)doProfile

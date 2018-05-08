@@ -15,9 +15,6 @@
 #import <Foundation/Foundation.h>
 #endif
 
-NSString *const ORG_ID    = @"5jewu930";
-NSString *const FP_SERVER = @"h.online-metrix.net";
-
 @interface TMXProfileController : NSObject
 
 /// The TrustDefender SDK instance
@@ -42,7 +39,7 @@ NSString *const FP_SERVER = @"h.online-metrix.net";
 ///
 ///  - Setting custom attributes. These could vary based on device or login etc In this example they are fixed strings.
 ///  - Setting a custom session id.
--(void)doProfile;
+- (void)doProfile;
 
 /// We get an instance of TrustDefenderSDK object here, and set up some initial settings.
 ///
@@ -55,5 +52,6 @@ NSString *const FP_SERVER = @"h.online-metrix.net";
 ///  - Set a delegate for callbacks
 /// @return returns the created LBProfileController object
 - (instancetype) init;
+- (void)initialiseTMX:(NSDictionary*)options;
 
 @end

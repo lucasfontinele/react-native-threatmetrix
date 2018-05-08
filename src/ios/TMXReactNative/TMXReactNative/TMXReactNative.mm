@@ -23,6 +23,8 @@
 
 // js result keys
 static NSString* const kSessionId = @"sessionId";
+NSString* const kOptionOrgIDJsKey = @"OrgIDJsKey";
+NSString* const kOptionFingerprintServerJsKey = @"FingerprintServerJsKey";
 
 @implementation TMXReactNative
 
@@ -47,6 +49,9 @@ RCT_REMAP_METHOD(tmx, initiateNativeTMX:(NSString *)orgid
     self.td = ttd;
     
     RCTLogInfo(@"doing Profile...");
+    NSDictionary *tmxOptions = @{ kOptionOrgIDJsKey: orgid, kOptionFingerprintServerJsKey: fingerprintServer };
+    
+    [self.td initialiseTMX:tmxOptions];
     [self.td doProfile];
     
     RCTLogInfo(@"login Okay...");
@@ -60,10 +65,6 @@ RCT_REMAP_METHOD(tmx, initiateNativeTMX:(NSString *)orgid
     NSDictionary *results  = @{kSessionId : self.td.sessionID};
     [self finishProfilingResults:results];
     
-}
-
-RCT_EXPORT_METHOD(sendSession:(NSString *)url) {
-    NSString *session   = self.td.sessionID;
 }
 
 - (void) finishProfilingResults:(NSDictionary*) results {
